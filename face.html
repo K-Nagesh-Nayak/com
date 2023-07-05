@@ -1,0 +1,102 @@
+<html>
+    <title>TOggle Face</title>
+    <style>
+       #canvas-container{
+        border: 2px solid black;
+        width: 200px;
+        height: 200px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+       } 
+    </style>
+    <body>
+        <div id="canvas-container">
+            <canvas id="canvas" width="150" height="150"></canvas>
+        </div>
+        <button onclick="toggleFace()">Toggle Face</button>
+        <script>
+            var canvas=document.getElementById("canvas");
+            var ctx = canvas.getContext("2d");
+            var isSmiling=true;
+
+            function drawsmile(){
+                ctx.clearRect(0,0,canvas.width,canvas.height);
+                ctx.beginPath();
+                ctx.arc(75,75,70,0,Math.PI*2);
+                ctx.fillStyle= " yellow ";
+                ctx.fill();
+                 
+                ctx.beginPath();
+                ctx.moveTo(35,55)
+                ctx.quadraticCurveTo(50,30,65,55);
+                ctx.strokeStyle="#000";
+                ctx.linewidth=4;
+                ctx.stroke();
+                ctx.beginPath();
+                ctx.moveTo(90,55)
+                ctx.quadraticCurveTo(105,30,120,55);
+                ctx.strokeStyle="#000";
+                ctx.linewidth=4;
+                ctx.stroke();
+                ctx.beginPath();
+                ctx.moveTo(80,70)
+                ctx.quadraticCurveTo(60,77,80,85);
+                ctx.strokeStyle="#000";
+                ctx.linewidth=4;
+                ctx.stroke();
+                ctx.beginPath();
+                ctx.moveTo(40,100)
+                ctx.quadraticCurveTo(75,155,110,100);
+                ctx.strokeStyle="#000";
+                ctx.linewidth=4;
+                ctx.stroke();
+
+            }
+
+            function drawsad(){
+                ctx.clearRect(0,0,canvas.width,canvas.height);
+                ctx.beginPath();
+                ctx.arc(75,75,70,0,Math.PI*2);
+                ctx.fillStyle= " yellow ";
+                ctx.fill();
+                 
+                ctx.beginPath();
+                ctx.moveTo(35,55)
+                ctx.quadraticCurveTo(50,30,65,55);
+                ctx.strokeStyle="#000";
+                ctx.linewidth=4;
+                ctx.stroke();
+                ctx.beginPath();
+                ctx.moveTo(90,55)
+                ctx.quadraticCurveTo(105,30,120,55);
+                ctx.strokeStyle="#000";
+                ctx.linewidth=4;
+                ctx.stroke();
+                ctx.beginPath();
+                ctx.moveTo(80,70)
+                ctx.quadraticCurveTo(60,77,80,85);
+                ctx.strokeStyle="#000";
+                ctx.linewidth=4;
+                ctx.stroke();
+                ctx.beginPath();
+                ctx.moveTo(40,120)
+                ctx.quadraticCurveTo(75,80,110,120);
+                ctx.strokeStyle="#000";
+                ctx.linewidth=4;
+                ctx.stroke();
+            }
+            function toggleFace(){
+                if(isSmiling){
+                    drawsad();
+                    isSmiling=false;
+                }
+                else{
+                    drawsmile();
+                    isSmiling=true;
+                }
+            }
+            drawsmile();
+        </script>
+    </body>
+</html>

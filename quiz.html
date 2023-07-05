@@ -1,0 +1,160 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Quiz Game</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+* {
+ box-sizing: border-box;
+}
+body {
+ background-color: #AA88FF;
+ font-family: "Poppins", sans-serif;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ height: 100vh;
+ overflow: hidden;
+ margin: 0;
+}
+
+.quiz-container {
+ background-color: #fff;
+ border-radius: 10px;
+ box-shadow: 0 0 10px 2px rgba(100, 100, 100, 0.1);
+ width: 500px;
+ max-width: 95vw;
+ overflow: hidden; 
+}
+.quiz
+-header {
+ padding: 1rem; }
+h2 {
+ padding: 1rem;
+ text-align: center;
+ margin: 0; }
+ul {
+ list-style-type: none;
+ padding: 0; }
+ul li {
+ font-size: 1.2rem;
+ margin: 1rem 0; }
+ul li label {
+ cursor: pointer; }
+button {
+ background-color: #7b339b;
+ color: #fff;
+ border: none;
+ display: block;
+ width: 100%;
+ cursor: pointer;
+ font-size: 1.1rem;
+ font-family: inherit;
+ padding: 1.1rem; }
+button:hover {
+ background-color: #732d91;
+}
+button:focus {
+ outline: none;
+ background-color: #5e3370;
+}
+</style></head>
+<body><br><br><br><br><br><br><br><br><br><br>
+<table bgcolor="white" align="center" height="400" width="400" >
+<tr><td>
+<div id="quiz">
+<h1><center><div id="question"></div></center></h1>
+<div id="options"></div>
+<button id="next-btn">Next</button><br>
+<button id="score-btn">Score</button>
+</div>
+<script>
+// define quiz data
+const quizData = [
+{
+question: "What is the capital of France?",
+options: ["Paris", "London", "Berlin", "Madrid"],
+answer: 0
+},
+
+{
+question: "What is the largest planet in our solar system?",
+options: ["Mars", "Jupiter", "Earth", "Venus"],
+answer: 1
+},
+{
+question: "What is the smallest country in the world?",
+options: ["Monaco", "Vatican City", "Liechtenstein", "San Marino"],
+answer: 1
+},
+{
+question: "What is the highest mountain in the world?",
+options: ["Mount Everest", "K2", "Kangchenjunga", "Lhotse"],
+answer: 0
+},
+{
+question: "What is the national animal of Australia?",
+options: ["Kangaroo", "Emu", "Platypus", "Koala"],
+answer: 0
+}
+];
+// initialize quiz
+let currentQuestion = 0;
+const questionElem = document.getElementById("question");
+const optionsElem = document.getElementById("options");
+const nextBtn = document.getElementById("next-btn");
+const scoreBtn = document.getElementById("score-btn");
+function showQuestion() {
+questionElem.innerHTML = quizData[currentQuestion].question;
+optionsElem.innerHTML = "";
+for (let i = 0; i < quizData[currentQuestion].options.length; i++) {
+const optionElem = document.createElement("input");
+optionElem.type = "radio";
+optionElem.name = "answer";
+optionElem.value = i;
+optionsElem.appendChild(optionElem);
+const labelElem = document.createElement("label");
+labelElem.innerHTML = quizData[currentQuestion].options[i];
+optionsElem.appendChild(labelElem);
+optionsElem.appendChild(document.createElement("br"));
+}
+}
+let score = 0;
+function showScore() {
+alert(`Your score is ${score}`);
+
+}
+function checkAnswer() {
+const selectedOption = optionsElem.querySelector("input[type='radio']:checked");
+if (selectedOption) {
+const selectedAnswer = parseInt(selectedOption.value);
+if (selectedAnswer === quizData[currentQuestion].answer) {
+score++;
+}
+//showScore();
+return true;
+} else 
+{
+alert("Please select an option");
+return false;
+}
+}
+showQuestion();
+nextBtn.addEventListener("click", function() {
+if (checkAnswer()) {
+currentQuestion++;
+if (currentQuestion < quizData.length) {
+showQuestion();
+} else {
+nextBtn.disabled = true;
+}
+} else {
+alert("Please select an answer.");
+}
+});
+scoreBtn.addEventListener("click", showScore);
+</script></td></tr></table>
+</body>
+</html>
+
